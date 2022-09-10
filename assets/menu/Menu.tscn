@@ -1,0 +1,137 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://assets/player/sprites/Mario (4).png" type="Texture" id=1]
+[ext_resource path="res://assets/player/sprites/Mario (1).png" type="Texture" id=2]
+[ext_resource path="res://assets/player/sprites/Mario (2).png" type="Texture" id=3]
+[ext_resource path="res://assets/player/sprites/Mario (5).png" type="Texture" id=4]
+[ext_resource path="res://assets/player/sprites/Mario (3).png" type="Texture" id=5]
+[ext_resource path="res://assets/player/sprites/Luigi1.png" type="Texture" id=6]
+[ext_resource path="res://assets/player/sprites/Luigi2.png" type="Texture" id=7]
+[ext_resource path="res://assets/player/sprites/Luigi4.png" type="Texture" id=8]
+[ext_resource path="res://assets/player/sprites/Luigi5.png" type="Texture" id=9]
+[ext_resource path="res://assets/player/sprites/Luigi3.png" type="Texture" id=10]
+[ext_resource path="res://assets/player/sprites/Muerte_Mario1.png" type="Texture" id=11]
+[ext_resource path="res://assets/player/sprites/Muerte_Luigi1.png" type="Texture" id=12]
+[ext_resource path="res://assets/menu/fonts/Mario-Kart-DS.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://assets/menu/Menu.gd" type="Script" id=14]
+[ext_resource path="res://assets/menu/music/SMB2 - Character Select.mp3" type="AudioStream" id=15]
+[ext_resource path="res://assets/menu/sounds/SMB - Jump Small.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/menu/sounds/SMB - Jump Super.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/menu/sounds/SMB3 - Entering a level.wav" type="AudioStream" id=18]
+
+[sub_resource type="AnimatedTexture" id=1]
+frames = 5
+fps = 8.0
+frame_0/texture = ExtResource( 2 )
+frame_1/texture = ExtResource( 3 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 5 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 1 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 4 )
+frame_4/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=2]
+frames = 5
+fps = 8.0
+frame_0/texture = ExtResource( 6 )
+frame_1/texture = ExtResource( 7 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 10 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 8 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 9 )
+frame_4/delay_sec = 0.0
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 100
+font_data = ExtResource( 13 )
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 14 )
+
+[node name="Mario" type="TextureButton" parent="."]
+margin_left = 140.0
+margin_top = 100.0
+margin_right = 340.0
+margin_bottom = 300.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 11 )
+texture_hover = SubResource( 1 )
+expand = true
+stretch_mode = 5
+
+[node name="Luigi" type="TextureButton" parent="."]
+margin_left = 380.0
+margin_top = 100.0
+margin_right = 580.0
+margin_bottom = 300.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 12 )
+texture_hover = SubResource( 2 )
+expand = true
+stretch_mode = 5
+
+[node name="Character" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 40.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 3 )
+text = "choose your character"
+align = 1
+valign = 1
+
+[node name="Player" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+margin_top = 325.0
+margin_bottom = 350.0
+custom_fonts/font = SubResource( 4 )
+text = "player"
+align = 1
+valign = 1
+
+[node name="Play" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -146.0
+margin_top = -100.0
+margin_right = 147.0
+margin_bottom = -12.0
+custom_fonts/font = SubResource( 5 )
+disabled = true
+text = "PLAY!"
+icon_align = 1
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -10.0
+autoplay = true
+
+[node name="MarioSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+
+[node name="LuigiSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+
+[node name="PlaySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+
+[connection signal="button_down" from="Mario" to="." method="_on_Mario_button_down"]
+[connection signal="button_down" from="Luigi" to="." method="_on_Luigi_button_down"]
+[connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]
+[connection signal="finished" from="PlaySound" to="." method="_on_PlaySound_finished"]

@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SMB - Jump Super.wav-7e418c65147be7a3317672d82c19d123.sample"
+
+[deps]
+
+source_file="res://assets/menu/sounds/SMB - Jump Super.wav"
+dest_files=[ "res://.import/SMB - Jump Super.wav-7e418c65147be7a3317672d82c19d123.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
